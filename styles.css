@@ -1,0 +1,54 @@
+.view {
+    background-image: url('https://www.gannett-cdn.com/-mm-/4265ce32c136d57b0870e84218966181a790c41a/c=0-570-5561-3712/local/-/media/2017/12/31/USATODAY/USATODAY/636503484962738487-USP-NFL-LOS-ANGELES-CHARGERS-AT-NEW-YORK-JETS-96188261.JPG?width=3200&height=1680&fit=crop');
+    background-attachment: fixed;
+    background-size: cover;
+    font-size: 25px;
+    color: #EADBC6;
+}
+
+.view > div {
+    width: 80%;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1em;
+}
+
+.view ul {
+    width: 80%;
+}
+
+.view h1 {
+    text-align: center;
+    color: aqua;
+}
+
+.view div img {
+    display: block;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.view ul a, .view ul a:visited, .view h2 a, .view h2 a:visited {
+    color: #33FF99;
+}
+
+.analysis {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.analysis p {
+    margin-left: 5%;
+}
+
+.analysis > * {
+    flex-basis: 50%;
+    flex-grow: 0;
+}
+
+.view strong {
+    color: yellow;
+}

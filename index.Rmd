@@ -1,0 +1,74 @@
+---
+title: "NFL-Statistics"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#load library
+library("dplyr")
+library("ggplot2")
+library("knitr")
+
+# read arrest.csv
+arrests_df <- read.csv("data/nfl-arrests/arrests.csv", stringsAsFactors = FALSE)
+
+source('scripts/summary.R')
+source('scripts/aggregate.R')
+source('scripts/chart1.R')
+source('scripts/chart2.R')
+source('scripts/chart3.R')
+```
+
+
+## Introduction
+
+Regardless of whether or not you are interested in sports, our group believes that everybody can find some degree of interest in sports statistics. We chose to gather data about the NFL because of the abundance of high quality data that we could access. We hope to highlight surprising and interesting connections between NFL datasets. In this project we are specifically focusing on the arrests.csv file where we are analyzing how different variables(denoted by the column values) relate to the arrests of NFL players. 
+
+
+## Summary
+
+```{r include=FALSE}
+v <- get_summary_info(arrests_df)
+```
+We created summary information from our NFL arrests dataset, which is a dataset listing a bunch of NFL games and some relevant information, and the number of arrests that occured in those games.
+The mean home score was `r v[1]`, the mean away score was `r v[2]`, the mean score difference `r v[3]`, the proportion of OT to non OT games was `r v[4]`, and the mean number of arrests were `r v[5]`.
+
+We also included a table showing the number of occurrences of each day in our arrests dataset.
+
+```{r, echo = FALSE} 
+df <- get_df()
+kable(df)
+```
+
+Summary info table:
+
+```{r, echo = FALSE} 
+kable(aggregate_df(arrests_df))
+```
+
+Table detailing aggregate function
+
+## Results
+
+### Arrest by Home Score
+The purpose of the first chart was to see if there was a relationship between home scores and arrests. We thought a scatterplot would be a good way to present this information as it is easy to read and make quick interpretations. 
+
+```{r echo=FALSE, warning=FALSE}
+scatterplot(arrests_df)
+```
+
+### Number of arrests per week
+The second chart we chose to plot gives us insight on the number of arrests that happen every week throughout a season. In a typical week it seems that the number of arrests are over 400. The distribution of the data seems to be symmetrical with no distinct peaks. We thought a bar chart would be appropriate to display this information because we can easily see any patterns by the height of the data.
+
+```{r echo=FALSE, warning=FALSE}
+plot(number_of_arrests_per_week(arrests_df))
+```
+
+### Number of crimes for each day of week
+The third chart is for showing the number of crimes on each day of the week that hosts the game. The result shows that Sunday’s arrest rate is much higher than the rest of the days, while the rest of days don’t show a significant difference in the number of arrests. We use a histogram to display the data because we want to show the relationship between qualitative data (weekdays) and quantitative data (number of arrests). In the same time, histogram can also show the difference of arrests between each weekdays easily with its bar length difference.
+
+```{r echo=FALSE, warning=FALSE}
+arrest_number_on_day(arrests_df)
+```
